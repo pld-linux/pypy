@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{pypy_libdir}/pypy/translator/goal
 %{pypy_libdir}/pypy/translator/goal/*.py
 %{pypy_libdir}/pypy/translator/goal/*.pyc
-%{pypy_libdir}/pypy/translator/goal/pypy-c
+%attr(755,root,root) %{pypy_libdir}/pypy/translator/goal/pypy-c
 %{pypy_libdir}/pypy/translator/jvm
 %{pypy_libdir}/pypy/translator/llsupport
 %{pypy_libdir}/pypy/translator/microbench
