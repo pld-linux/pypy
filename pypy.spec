@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README LICENSE pypy/doc
-%{_bindir}/pypy
+%attr(755,root,root) %{_bindir}/pypy
 %dir %{pypy_libdir}
 %{pypy_libdir}/ctypes_configure
 %{pypy_libdir}/demo
