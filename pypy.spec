@@ -15,6 +15,7 @@ License:	distributable
 Group:		Development/Languages/Python
 Source0:	http://cdn.bitbucket.org/pypy/pypy/downloads/%{name}-%{version}-src.tar.bz2
 # Source0-md5:	cb9ada2c50666318c3a2863da1fbe487
+Patch0:		%{name}-curses.patch
 URL:		http://pypy.org
 BuildRequires:	rpm-pythonprov
 BuildRequires:	libffi-static
@@ -46,6 +47,7 @@ language (2.7.1). It has several advantages and distinct features:
 
 %prep
 %setup -q -n %{name}-%{version}-src
+%patch0 -p1
 
 %build
 cd pypy/translator/goal
