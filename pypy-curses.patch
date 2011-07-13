@@ -1,0 +1,12 @@
+--- pypy-1.5-src/pypy/module/_minimal_curses/fficurses.py~	2011-04-30 16:18:50.000000000 +0200
++++ pypy-1.5-src/pypy/module/_minimal_curses/fficurses.py	2011-07-13 08:40:25.739267482 +0200
+@@ -12,7 +12,7 @@
+ from pypy.translator.tool.cbuild import ExternalCompilationInfo
+ 
+ eci = ExternalCompilationInfo(
+-    includes = ['curses.h', 'term.h'],
++    includes = ['ncurses/curses.h', 'ncurses/term.h'],
+-    libraries = ['curses'],
++    libraries = ['curses', 'tinfo'],
+ )
+ 
