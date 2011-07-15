@@ -25,9 +25,9 @@
 -    link_flags = ('-pthread', '-lrt')
 -    cflags = ('-O3', '-pthread', '-fomit-frame-pointer',
 -              '-Wall', '-Wno-unused')
-+    link_flags = os.environ.get("LDFLAGS", "").split() + ['-pthread', '-lrt']
-+    cflags = os.environ.get("CFLAGS", "").split() + ['-pthread', '-fomit-frame-pointer',
-+              '-Wall', '-Wno-unused']
++    link_flags = tuple(os.environ.get("LDFLAGS", "").split() + ['-pthread', '-lrt'])
++    cflags = tuple(os.environ.get("CFLAGS", "").split() + ['-pthread', '-fomit-frame-pointer',
++              '-Wall', '-Wno-unused'])
      standalone_only = ()
      shared_only = ('-fPIC',)
      so_ext = 'so'
