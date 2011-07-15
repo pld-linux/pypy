@@ -1,0 +1,33 @@
+--- pypy-1.5-src/ctypes_configure/cbuild.py.orig	2011-07-15 14:21:20.195034442 +0200
++++ pypy-1.5-src/ctypes_configure/cbuild.py	2011-07-15 14:26:14.168404165 +0200
+@@ -376,7 +376,9 @@
+                 self.libraries.append('m')
+             if 'pthread' not in self.libraries:
+                 self.libraries.append('pthread')
+-            self.compile_extra += ['-O3', '-fomit-frame-pointer', '-pthread']
++            self.compile_extra += os.environ.get("CFLAGS", "").split()
++	    self.compile_extra += ['-fomit-frame-pointer', '-pthread']
++            self.link_extra += os.environ.get("LDFLAGS", "").split()
+             self.link_extra += ['-pthread']
+         if sys.platform == 'win32':
+             self.link_extra += ['/DEBUG'] # generate .pdb file
+--- pypy-1.5-src/pypy/translator/platform/linux.py.orig	2011-07-15 14:51:34.540868990 +0200
++++ pypy-1.5-src/pypy/translator/platform/linux.py	2011-07-15 14:53:13.945377438 +0200
+@@ -1,13 +1,14 @@
+ """Support for Linux."""
+ 
++import os
+ from pypy.translator.platform.posix import BasePosix
+ 
+ class BaseLinux(BasePosix):
+     name = "linux"
+     
+-    link_flags = ('-pthread', '-lrt')
+-    cflags = ('-O3', '-pthread', '-fomit-frame-pointer',
+-              '-Wall', '-Wno-unused')
++    link_flags = os.environ.get("LDFLAGS", "").split() + ['-pthread', '-lrt']
++    cflags = os.environ.get("CFLAGS", "").split() + ['-pthread', '-fomit-frame-pointer',
++              '-Wall', '-Wno-unused']
+     standalone_only = ()
+     shared_only = ('-fPIC',)
+     so_ext = 'so'
