@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_with	tests		# do perform tests
-%bcond_without	bootstrap	# use PyPi
+%bcond_with	bootstrap	# use Python2 instead of PyPy
 
 %if %{without bootstrap}
 %define	__python pypy
@@ -10,7 +10,7 @@
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
 Version:	1.5
-Release:	1
+Release:	2
 License:	distributable
 Group:		Development/Languages/Python
 Source0:	http://cdn.bitbucket.org/pypy/pypy/downloads/%{name}-%{version}-src.tar.bz2
@@ -23,7 +23,7 @@ BuildRequires:	libffi-static
 %if %{with bootstrap}
 BuildRequires:	python-modules
 %else
-BuildRequires:	pypy-modules
+BuildRequires:	pypy
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
