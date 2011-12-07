@@ -9,17 +9,18 @@
 
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
-Version:	1.5
-Release:	3
+Version:	1.7
+Release:	0.1
 License:	distributable
 Group:		Development/Languages/Python
-Source0:	http://cdn.bitbucket.org/pypy/pypy/downloads/%{name}-%{version}-src.tar.bz2
-# Source0-md5:	cb9ada2c50666318c3a2863da1fbe487
+Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
+# Source0-md5:	fc22184c931ead98bdae9ec3e79595c2
 Patch0:		%{name}-curses.patch
 Patch1:		%{name}-cldflags.patch
 URL:		http://pypy.org
-BuildRequires:	rpm-pythonprov
 BuildRequires:	libffi-static
+BuildRequires:	python-devel-tools
+BuildRequires:	rpm-pythonprov
 %if %{with bootstrap}
 BuildRequires:	python-modules
 %else
@@ -47,7 +48,7 @@ language (2.7.1). It has several advantages and distinct features:
 - As well as other features.
 
 %prep
-%setup -q -n %{name}-%{version}-src
+%setup -q -n %{name}-%{name}-release-%{version}
 %patch0 -p1
 %patch1 -p1
 
