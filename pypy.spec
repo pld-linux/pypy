@@ -10,7 +10,7 @@
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
 Version:	1.7
-Release:	0.1
+Release:	1
 License:	distributable
 Group:		Development/Languages/Python
 Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
@@ -125,7 +125,6 @@ rm -rf $RPM_BUILD_ROOT
 %{pypy_libdir}/pypy/translator/oosupport
 %{pypy_libdir}/pypy/translator/platform
 %{pypy_libdir}/pypy/translator/sandbox
-#%%{pypy_libdir}/pypy/translator/stackless
 %{pypy_libdir}/pypy/translator/test
 %{pypy_libdir}/pypy/translator/tool
 %{pypy_libdir}/pypy/translator/*.py
