@@ -125,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %{pypy_libdir}/pypy/translator/oosupport
 %{pypy_libdir}/pypy/translator/platform
 %{pypy_libdir}/pypy/translator/sandbox
-%{pypy_libdir}/pypy/translator/stackless
+#%%{pypy_libdir}/pypy/translator/stackless
 %{pypy_libdir}/pypy/translator/test
 %{pypy_libdir}/pypy/translator/tool
 %{pypy_libdir}/pypy/translator/*.py
