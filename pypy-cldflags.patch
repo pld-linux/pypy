@@ -1,33 +1,35 @@
---- pypy-1.5-src/ctypes_configure/cbuild.py.orig	2011-07-15 14:21:20.195034442 +0200
-+++ pypy-1.5-src/ctypes_configure/cbuild.py	2011-07-15 14:26:14.168404165 +0200
-@@ -376,7 +376,9 @@
-                 self.libraries.append('m')
-             if 'pthread' not in self.libraries:
-                 self.libraries.append('pthread')
--            self.compile_extra += ['-O3', '-fomit-frame-pointer', '-pthread']
-+            self.compile_extra += os.environ.get("CFLAGS", "").split()
+--- pypy-pypy-release-1.7/ctypes_configure/cbuild.py~	2011-12-07 09:49:56.682792155 +0100
++++ pypy-pypy-release-1.7/ctypes_configure/cbuild.py	2011-12-07 09:57:01.712750839 +0100
+@@ -391,7 +391,9 @@
+                 if s + 'lib' not in self.library_dirs and \
+                    os.path.exists(s + 'lib'):
+                     self.library_dirs.append(s + 'lib')
+-            self.compile_extra += ['-O3', '-fomit-frame-pointer']
++	    self.compile_extra += os.environ.get("CFLAGS", "").split()
++	    self.compile_extra += ['-fomit-frame-pointer']
 +	    self.compile_extra += ['-fomit-frame-pointer', '-pthread']
-+            self.link_extra += os.environ.get("LDFLAGS", "").split()
-             self.link_extra += ['-pthread']
-         if sys.platform == 'win32':
-             self.link_extra += ['/DEBUG'] # generate .pdb file
---- pypy-1.5-src/pypy/translator/platform/linux.py.orig	2011-07-15 14:51:34.540868990 +0200
-+++ pypy-1.5-src/pypy/translator/platform/linux.py	2011-07-15 14:53:13.945377438 +0200
-@@ -1,13 +1,14 @@
+ 
+         if outputfilename is None:
+             self.outputfilename = py.path.local(cfilenames[0]).new(ext=ext)
+--- pypy-pypy-release-1.7/pypy/translator/platform/linux.py.bak	2011-12-07 10:21:45.659281575 +0100
++++ pypy-pypy-release-1.7/pypy/translator/platform/linux.py	2011-12-07 10:22:29.619262793 +0100
+@@ -1,15 +1,14 @@
  """Support for Linux."""
  
-+import os
+-import sys
++import sys, os
  from pypy.translator.platform.posix import BasePosix
  
  class BaseLinux(BasePosix):
      name = "linux"
      
--    link_flags = ('-pthread', '-lrt')
+-    link_flags = ('-pthread',)
+-    extra_libs = ('-lrt',)
 -    cflags = ('-O3', '-pthread', '-fomit-frame-pointer',
 -              '-Wall', '-Wno-unused')
 +    link_flags = tuple(os.environ.get("LDFLAGS", "").split() + ['-pthread', '-lrt'])
 +    cflags = tuple(os.environ.get("CFLAGS", "").split() + ['-pthread', '-fomit-frame-pointer',
-+              '-Wall', '-Wno-unused'])
++	    '-Wall', '-Wno-unused'])
      standalone_only = ()
      shared_only = ('-fPIC',)
      so_ext = 'so'
