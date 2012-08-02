@@ -18,7 +18,9 @@ Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
 Patch0:		%{name}-curses.patch
 Patch1:		%{name}-cldflags.patch
 URL:		http://pypy.org
-BuildRequires:	libffi-static
+# BuildRequires:	libffi-static
+BuildRequires:	ncurses-devel
+BuildRequires:	openssl-devel
 BuildRequires:	python-devel-tools
 BuildRequires:	rpm-pythonprov
 %if %{with bootstrap}
