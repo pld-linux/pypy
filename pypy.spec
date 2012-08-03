@@ -1,4 +1,6 @@
-#
+# TODO:
+# - Reviow commented patch
+
 # Conditional build:
 %bcond_with	tests		# do perform tests
 %bcond_with	bootstrap	# use Python2 instead of PyPy
@@ -9,12 +11,12 @@
 
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
-Version:	1.7
-Release:	2
+Version:	1.9
+Release:	0.2
 License:	distributable
 Group:		Development/Languages/Python
 Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
-# Source0-md5:	fc22184c931ead98bdae9ec3e79595c2
+# Source0-md5:	f92c0171a9578a3e4a0f74947ec596ab
 Patch0:		%{name}-curses.patch
 Patch1:		%{name}-cldflags.patch
 URL:		http://pypy.org
@@ -50,11 +52,13 @@ language (2.7.1). It has several advantages and distinct features:
 - As well as other features.
 
 %prep
-%setup -q -n %{name}-%{name}-release-%{version}
+# %setup -q -n %{name}-%{name}-release-%{version}
+%setup -q -n %{name}-%{name}-341e1e3821ff
 %patch0 -p1
-%patch1 -p1
+# %patch1 -p1
 
 %build
+
 cd pypy/translator/goal
 CC="%{__cc}" \
 CFLAGS="%{rpmcflags}" \
