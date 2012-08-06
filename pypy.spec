@@ -1,5 +1,6 @@
 # TODO:
 # - Reviow commented patch
+# - Chack why libffi-static needed ? Now there is only libffi-devel
 
 # Conditional build:
 %bcond_with	tests		# do perform tests
@@ -12,7 +13,7 @@
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
 Version:	1.9
-Release:	0.2
+Release:	1
 License:	distributable
 Group:		Development/Languages/Python
 Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
@@ -20,7 +21,7 @@ Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
 Patch0:		%{name}-curses.patch
 Patch1:		%{name}-cldflags.patch
 URL:		http://pypy.org
-# BuildRequires:	libffi-static
+BuildRequires:	libffi-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel
 BuildRequires:	python-devel-tools
