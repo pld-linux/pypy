@@ -1,0 +1,21 @@
+--- pypy-pypy-341e1e3821ff/lib_pypy/_pypy_interact.py.remove_startup_message	2012-07-06 12:10:46.504228264 -0400
++++ pypy-pypy-341e1e3821ff/lib_pypy/_pypy_interact.py	2012-07-06 12:11:01.986034714 -0400
+@@ -13,18 +13,6 @@ def interactive_console(mainmodule=None)
+         sys.ps2 = '.... '
+     #
+     try:
+-        from _pypy_irc_topic import some_topic
+-        text = "And now for something completely different: ``%s''" % (
+-            some_topic(),)
+-        while len(text) >= 80:
+-            i = text[:80].rfind(' ')
+-            print text[:i]
+-            text = text[i+1:]
+-        print text
+-    except ImportError:
+-        pass
+-    #
+-    try:
+         if not os.isatty(sys.stdin.fileno()):
+             # Bail out if stdin is not tty-like, as pyrepl wouldn't be happy
+             # For example, with:

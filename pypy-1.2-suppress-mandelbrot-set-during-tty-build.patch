@@ -1,0 +1,13 @@
+diff --git a/pypy/tool/ansi_print.py b/pypy/tool/ansi_print.py
+index 3eff27c..fac4ba2 100644
+--- a/pypy/tool/ansi_print.py
++++ b/pypy/tool/ansi_print.py
+@@ -25,7 +25,7 @@ class AnsiLog:
+         self.kw_to_color = self.KW_TO_COLOR.copy()
+         self.kw_to_color.update(kw_to_color)
+         self.file = file
+-        self.fancy = True
++        self.fancy = False
+         self.isatty = getattr(sys.stderr, 'isatty', lambda: False)
+         if self.fancy and self.isatty(): 
+             self.mandelbrot_driver = Driver()

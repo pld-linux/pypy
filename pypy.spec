@@ -13,13 +13,17 @@
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
 Version:	1.9
-Release:	4
+Release:	5
 License:	distributable
 Group:		Development/Languages/Python
 Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
 # Source0-md5:	f92c0171a9578a3e4a0f74947ec596ab
 Patch0:		%{name}-curses.patch
 Patch1:		%{name}-cldflags.patch
+Patch2:		006-always-log-stdout.patch
+Patch3:		007-remove-startup-message.patch
+Patch4:		008-fix-dynamic-symbols-script.patch
+Patch5:		pypy-1.2-suppress-mandelbrot-set-during-tty-build.patch
 URL:		http://pypy.org
 BuildRequires:	libffi-devel
 BuildRequires:	ncurses-devel
@@ -57,6 +61,10 @@ language (2.7.1). It has several advantages and distinct features:
 %setup -q -n %{name}-%{name}-341e1e3821ff
 %patch0 -p1
 # %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 
@@ -64,7 +72,11 @@ cd pypy/translator/goal
 CC="%{__cc}" \
 CFLAGS="%{rpmcflags}" \
 LDFLAGS="%{rpmldflags}" \
-%{__python} translate.py -Ojit --make-jobs=1
+%{__python} translate.py \
+	-Ojit \
+	--make-jobs=1 \
+	--batch \
+	--gcrootfinder=shadowstack
 cd ../../..
 
 %if %{with tests}

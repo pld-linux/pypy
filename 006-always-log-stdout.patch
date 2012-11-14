@@ -1,0 +1,11 @@
+--- pypy-pypy-341e1e3821ff/pypy/translator/platform/__init__.py.always_log_stdout	2012-07-06 11:13:46.878979461 -0400
++++ pypy-pypy-341e1e3821ff/pypy/translator/platform/__init__.py	2012-07-06 11:25:26.281235732 -0400
+@@ -126,6 +126,8 @@ class Platform(object):
+         self._handle_error(returncode, stdout, stderr, outname)
+ 
+     def _handle_error(self, returncode, stdout, stderr, outname):
++        for line in stdout.splitlines():
++            log.message(line)
+         if returncode != 0:
+             errorfile = outname.new(ext='errors')
+             errorfile.write(stderr, 'wb')
