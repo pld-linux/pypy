@@ -13,7 +13,7 @@
 Summary:	PyPy - a fast, alternative implementation of the Python language
 Name:		pypy
 Version:	1.9
-Release:	5
+Release:	6
 License:	distributable
 Group:		Development/Languages/Python
 Source0:	https://bitbucket.org/pypy/pypy/get/release-%{version}.tar.bz2
